@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nathaniel's GitHub Projects</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 0.25rem;
+      color: #61dafb;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    main {
+      max-width: 900px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgb(97 218 251 / 0.7);
+    }
+
+    .project-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #61dafb;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 1rem;
+      color: #bbb;
+      flex-grow: 1;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .project-lang {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #03dac6;
+      align-self: flex-start;
+      padding: 0.2rem 0.6rem;
+      border: 1.5px solid #03dac6;
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Nathaniel's GitHub Projects</h1>
+  <p>Collection of my public repositories and cool code experiments</p>
+</header>
+
+<main>
+  <article class="project-card">
+    <h2 class="project-name">Quantum-computing</h2>
+    <p class="project-desc">Collection of Quantum projects using Qiskit and Pennylane</p>
+    <div class="project-lang">Jupyter Notebook</div>
+  </article>
+
+  <article class="project-card">
+    <h2 class="project-name">WanderingProgramV2</h2>
+    <p class="project-desc">WanderingProgramV2 is an experimental Python script for self replication and self mutation. Enhancing its predecessor, it features dynamic code mutation, file encryption, decoy creation, and backgr…</p>
+    <div class="project-lang">Python</div>
+  </article>
+
+  <article class="project-card">
+    <h2 class="project-name">fiatEliminator_BitBoyEdition</h2>
+    <p class="project-desc">Fiat Eliminator is a retro inspired arcade shooter where you control Bitcoin, using lasers to defeat fiat cash. The game has 3 levels with dynamic backgrounds that change every 300 points. Develope…</p>
+    <div class="project-lang">JavaScript</div>
+  </article>
+
+  <article class="project-card">
+    <h2 class="project-name">PolymorphicScripts</h2>
+    <p class="project-desc">PolymorphicScripts features a Python script that dynamically generates polymorphic versions of itself, highlighting advanced code obfuscation and polymorphism techniques. Using randomly named funct…</p>
+    <div class="project-lang">Python</div>
+  </article>
+
+  <article class="project-card">
+    <h2 class="project-name">JumperEncryption</h2>
+    <p class="project-desc">This program encrypts files in randomly selected folders using XOR encryption and moves itself across directories. It also leaves a note on the desktop after processing the files.</p>
+    <div class="project-lang">Python</div>
+  </article>
+
+  <article class="project-card">
+    <h2 class="project-name">BlackJackAi</h2>
+    <p class="project-desc">AI powered Blackjack advice using basic strategy and card counting.</p>
+    <div class="project-lang">Python</div>
+  </article>
+</main>
+
+<footer>
+  &copy; 2025 Nathaniel Armogan
+</footer>
+
+</body>
+</html>
