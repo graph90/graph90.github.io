@@ -57,6 +57,8 @@
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden; /* prevents text overflow */
+      word-wrap: break-word; /* ensures long words break */
     }
 
     .project-card:hover {
@@ -93,7 +95,18 @@
     footer {
       margin-top: 3rem;
       font-size: 0.9rem;
-      color: #555;
+      color: #ccc;
+      text-align: center;
+    }
+
+    footer a {
+      color: #61dafb;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 480px) {
@@ -119,19 +132,19 @@
 
   <article class="project-card">
     <h2 class="project-name">WanderingProgramV2</h2>
-    <p class="project-desc">WanderingProgramV2 is an experimental Python script for self replication and self mutation. Enhancing its predecessor, it features dynamic code mutation, file encryption, decoy creation, and backgr…</p>
+    <p class="project-desc">WanderingProgramV2 is an experimental Python script for self replication and self mutation. Enhancing its predecessor, it features dynamic code mutation, file encryption, decoy creation, and background execution.</p>
     <div class="project-lang">Python</div>
   </article>
 
   <article class="project-card">
     <h2 class="project-name">fiatEliminator_BitBoyEdition</h2>
-    <p class="project-desc">Fiat Eliminator is a retro inspired arcade shooter where you control Bitcoin, using lasers to defeat fiat cash. The game has 3 levels with dynamic backgrounds that change every 300 points. Develope…</p>
+    <p class="project-desc">Fiat Eliminator is a retro inspired arcade shooter where you control Bitcoin, using lasers to defeat fiat cash. The game has 3 levels with dynamic backgrounds that change every 300 points.</p>
     <div class="project-lang">JavaScript</div>
   </article>
 
   <article class="project-card">
     <h2 class="project-name">PolymorphicScripts</h2>
-    <p class="project-desc">PolymorphicScripts features a Python script that dynamically generates polymorphic versions of itself, highlighting advanced code obfuscation and polymorphism techniques. Using randomly named funct…</p>
+    <p class="project-desc">PolymorphicScripts features a Python script that dynamically generates polymorphic versions of itself, highlighting advanced code obfuscation and polymorphism techniques.</p>
     <div class="project-lang">Python</div>
   </article>
 
@@ -149,7 +162,10 @@
 </main>
 
 <footer>
-  &copy; 2025 Nathaniel Armogan
+  &copy; 2025 Nathaniel Armogan |
+  <a href="https://github.com/graph90" target="_blank">GitHub</a> |
+  <a href="https://www.linkedin.com/in/nathaniel-armogan-983556171" target="_blank">LinkedIn</a> |
+  <a href="https://www.roblox.com/games/95249682605742/Parkour-vs-Zombies-Survival-Chaos" target="_blank">Roblox Game</a>
 </footer>
 
 </body>
