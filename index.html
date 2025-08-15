@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nathaniel's Projects</title>
+  <title>Nathaniel's GitHub Projects</title>
   <style>
     /* Reset */
     * {
@@ -32,7 +32,23 @@
       font-weight: 700;
       font-size: 2.5rem;
       margin-bottom: 0.25rem;
-      color: #61dafb;
+      background: linear-gradient(270deg, #61dafb, #ff0000);
+      background-size: 400% 400%;
+      animation: gradientShift 6s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     header p {
@@ -57,8 +73,6 @@
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      overflow: hidden; /* prevents text overflow */
-      word-wrap: break-word; /* ensures long words break */
     }
 
     .project-card:hover {
@@ -95,18 +109,7 @@
     footer {
       margin-top: 3rem;
       font-size: 0.9rem;
-      color: #ccc;
-      text-align: center;
-    }
-
-    footer a {
-      color: #61dafb;
-      text-decoration: none;
-      margin: 0 0.5rem;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
+      color: #555;
     }
 
     @media (max-width: 480px) {
@@ -119,7 +122,7 @@
 <body>
 
 <header>
-  <h1>Nathaniel's Projects</h1>
+  <h1>Nathaniel's GitHub Projects</h1>
   <p>Collection of my public repositories and cool code experiments</p>
 </header>
 
@@ -132,19 +135,19 @@
 
   <article class="project-card">
     <h2 class="project-name">WanderingProgramV2</h2>
-    <p class="project-desc">WanderingProgramV2 is an experimental Python script for self replication and self mutation. Enhancing its predecessor, it features dynamic code mutation, file encryption, decoy creation, and background execution.</p>
+    <p class="project-desc">WanderingProgramV2 is an experimental Python script for self replication and self mutation. Enhancing its predecessor, it features dynamic code mutation, file encryption, decoy creation, and backgr…</p>
     <div class="project-lang">Python</div>
   </article>
 
   <article class="project-card">
-    <h2 class="project-name">fiatEliminator_BitBoyEdition</h2>
-    <p class="project-desc">Fiat Eliminator is a retro inspired arcade shooter where you control Bitcoin, using lasers to defeat fiat cash. The game has 3 levels with dynamic backgrounds that change every 300 points.</p>
+    <h2 class="project-name">fiatEliminator android</h2>
+    <p class="project-desc">Fiat Eliminator is a retro inspired arcade shooter where you control Bitcoin, using lasers to defeat fiat cash. The game has 3 levels with dynamic backgrounds that change every 300 points. Develope…</p>
     <div class="project-lang">JavaScript</div>
   </article>
 
   <article class="project-card">
     <h2 class="project-name">PolymorphicScripts</h2>
-    <p class="project-desc">PolymorphicScripts features a Python script that dynamically generates polymorphic versions of itself, highlighting advanced code obfuscation and polymorphism techniques.</p>
+    <p class="project-desc">PolymorphicScripts features a Python script that dynamically generates polymorphic versions of itself, highlighting advanced code obfuscation and polymorphism techniques. Using randomly named funct…</p>
     <div class="project-lang">Python</div>
   </article>
 
@@ -162,10 +165,7 @@
 </main>
 
 <footer>
-  &copy; 2025 Nathaniel Armogan |
-  <a href="https://github.com/graph90" target="_blank">GitHub</a> |
-  <a href="https://www.linkedin.com/in/nathaniel-armogan-983556171" target="_blank">LinkedIn</a> |
-  <a href="https://www.roblox.com/games/95249682605742/Parkour-vs-Zombies-Survival-Chaos" target="_blank">Roblox Game</a>
+  &copy; 2025 Nathaniel Armogan
 </footer>
 
 </body>
