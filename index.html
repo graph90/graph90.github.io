@@ -14,13 +14,14 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #121212;
+      background: linear-gradient(to bottom, #000000, #ffffff);
       color: #eee;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
+      transition: background 0.5s ease;
     }
 
     header {
@@ -83,6 +84,11 @@
       gap: 1.5rem;
     }
 
+    a.project-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .project-card {
       background: #1e1e1e;
       border-radius: 12px;
@@ -92,6 +98,7 @@
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      height: 100%;
     }
 
     .project-card:hover {
@@ -125,10 +132,90 @@
       user-select: none;
     }
 
+    /* Blog Section */
+    section.blog {
+      max-width: 900px;
+      width: 100%;
+      margin-top: 3rem;
+    }
+
+    .blog h2 {
+      font-size: 2rem;
+      color: #61dafb;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .blog-card {
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.7);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgb(97 218 251 / 0.7);
+    }
+
+    .blog-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #61dafb;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-date {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 0.75rem;
+    }
+
+    .blog-excerpt {
+      font-size: 1rem;
+      color: #bbb;
+      flex-grow: 1;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .read-more {
+      align-self: flex-start;
+      background: #61dafb;
+      color: #121212;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .read-more:hover {
+      background: #03a9f4;
+    }
+
     footer {
       margin-top: 3rem;
       font-size: 0.9rem;
       color: #555;
+    }
+
+    footer a {
+      color: #61dafb;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 480px) {
@@ -136,55 +223,109 @@
         padding: 1rem;
       }
     }
+    .blog h2 {
+  animation: fadeColor 3s ease-in-out infinite alternate;
+}
+
+@keyframes fadeColor {
+  0% { color: #000000; }
+  50% { color: #fb0000; }
+  100% { color: #61dafb; }
+}
   </style>
+  
 </head>
 <body>
 
 <header>
-  <h1>Nathaniel's GitHub Projects</h1>
-  <p>Collection of my public repositories and cool code experiments</p>
+  <h1> Portfolio</h1>
 </header>
 
+<!-- Portfolio Section -->
 <main>
-  <article class="project-card">
-    <h2 class="project-name">Quantum-computing</h2>
-    <p class="project-desc">Collection of Quantum projects using Qiskit and Pennylane</p>
-    <div class="project-lang">Jupyter Notebook</div>
-  </article>
+  <a class="project-link" href="https://github.com/graph90/Quantum-computing" target="_blank">
+    <article class="project-card">
+      <h2 class="project-name">Quantum-computing</h2>
+      <p class="project-desc">Collection of Quantum projects using Qiskit and Pennylane</p>
+      <div class="project-lang">Jupyter Notebook</div>
+    </article>
+  </a>
 
-  <article class="project-card">
-    <h2 class="project-name">WanderingProgramV2</h2>
-    <p class="project-desc">WanderingProgramV2 is an experimental Python script for self replication and self mutation. Enhancing its predecessor, it features dynamic code mutation, file encryption, decoy creation, and backgr…</p>
-    <div class="project-lang">Python</div>
-  </article>
+  <a class="project-link" href="https://github.com/graph90/WanderingProgramV2" target="_blank">
+    <article class="project-card">
+      <h2 class="project-name">WanderingProgramV2</h2>
+      <p class="project-desc">WanderingProgramV2 is an experimental Python script for self replication and self mutation...</p>
+      <div class="project-lang">Python</div>
+    </article>
+  </a>
 
-  <article class="project-card">
-    <h2 class="project-name">fiatEliminator_BitBoyEdition</h2>
-    <p class="project-desc">Fiat Eliminator is a retro inspired arcade shooter where you control Bitcoin, using lasers to defeat fiat cash. The game has 3 levels with dynamic backgrounds that change every 300 points. Develope…</p>
-    <div class="project-lang">JavaScript</div>
-  </article>
+  <a class="project-link" href="https://github.com/graph90/fiatEliminator_BitBoyEdition" target="_blank">
+    <article class="project-card">
+      <h2 class="project-name">fiat Eliminator android</h2>
+      <p class="project-desc">Retro inspired arcade shooter where you control Bitcoin...</p>
+      <div class="project-lang">JavaScript</div>
+    </article>
+  </a>
 
-  <article class="project-card">
-    <h2 class="project-name">PolymorphicScripts</h2>
-    <p class="project-desc">PolymorphicScripts features a Python script that dynamically generates polymorphic versions of itself, highlighting advanced code obfuscation and polymorphism techniques. Using randomly named funct…</p>
-    <div class="project-lang">Python</div>
-  </article>
+  <a class="project-link" href="https://github.com/graph90/PolymorphicScripts" target="_blank">
+    <article class="project-card">
+      <h2 class="project-name">PolymorphicScripts</h2>
+      <p class="project-desc">Python script that dynamically generates polymorphic versions of itself...</p>
+      <div class="project-lang">Python</div>
+    </article>
+  </a>
 
-  <article class="project-card">
-    <h2 class="project-name">JumperEncryption</h2>
-    <p class="project-desc">This program encrypts files in randomly selected folders using XOR encryption and moves itself across directories. It also leaves a note on the desktop after processing the files.</p>
-    <div class="project-lang">Python</div>
-  </article>
+  <a class="project-link" href="https://github.com/graph90/JumperEncryption" target="_blank">
+    <article class="project-card">
+      <h2 class="project-name">JumperEncryption</h2>
+      <p class="project-desc">Encrypts files in random folders using XOR encryption...</p>
+      <div class="project-lang">Python</div>
+    </article>
+  </a>
 
-  <article class="project-card">
-    <h2 class="project-name">BlackJackAi</h2>
-    <p class="project-desc">AI powered Blackjack advice using basic strategy and card counting.</p>
-    <div class="project-lang">Python</div>
-  </article>
+  <a class="project-link" href="https://github.com/graph90/BlackJackAi" target="_blank">
+    <article class="project-card">
+      <h2 class="project-name">BlackJackAi</h2>
+      <p class="project-desc">AI powered Blackjack advice using basic strategy and card counting.</p>
+      <div class="project-lang">Python</div>
+    </article>
+  </a>
+
+  <a class="project-link" href="https://www.roblox.com/games/95249682605742/Parkour-vs-Zombies-Survival-Chaos" target="_blank">
+    <article class="project-card">
+      <h2 class="project-name">Parkour vs Zombies: Survival Chaos</h2>
+      <p class="project-desc">Roblox game where you survive waves of zombies while navigating parkour obstacles.</p>
+      <div class="project-lang">Roblox</div>
+    </article>
+  </a>
 </main>
 
+<!-- Blog Section -->
+<section class="blog">
+  <h2>Latest Blog Posts</h2>
+  <div class="blog-grid">
+    <article class="blog-card">
+      <h3 class="blog-title">Uncensored Gemma 3</h3>
+      <p class="blog-excerpt">A good uncensored version of gemma3-4b-it-abliterated-GGUF</p>
+      <a class="project-link" href="https://huggingface.co/mradermacher/gemma3-4b-it-abliterated-GGUF">huggingface</a>
+    </article>
+    <article class="blog-card">
+      <h3 class="blog-title">Good Langs</h3>
+      <p class="blog-excerpt">Python, C++, Java, C, Bash, DuckyScript, JavaScript</p>
+    </article>
+
+    <article class="blog-card">
+      <h3 class="blog-title"></h3>
+      <p class="blog-excerpt">graph90 💻 Python | C++ | Java | C | Bash | Lua 🐧 Linux, FreeBSD & MINIX Enthusiast 🎮 Roblox Game Developer</p>
+    </article>
+  </div>
+</section>
+
 <footer>
-  &copy; 2025 Nathaniel Armogan
+  &copy; 2025 Nathaniel Armogan &nbsp;|&nbsp;
+  <a href="https://www.linkedin.com/in/nathaniel-armogan-983556171" target="_blank">
+    <b>LinkedIn</b>
+  </a>
 </footer>
 
 </body>
