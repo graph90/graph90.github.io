@@ -102,6 +102,7 @@
       50% { left: 100%; }
       100% { left: -100%; }
     }
+
     #theme-toggle {
       position: fixed;
       top: 1rem;
@@ -280,32 +281,33 @@
       transform: scale(1.05);
     }
 
-   footer {
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  color: #555;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  align-items: center;
-}
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      align-items: center;
+    }
 
-footer a {
-  color: #61dafb;
-  text-decoration: none;
-  transition: text-shadow 0.3s ease;
-}
+    footer a {
+      color: #61dafb;
+      text-decoration: none;
+      transition: text-shadow 0.3s ease;
+    }
 
-footer a:hover {
-  text-shadow: 0 0 5px #61dafb;
-  text-decoration: none;
-}
+    footer a:hover {
+      text-shadow: 0 0 5px #61dafb;
+      text-decoration: none;
+    }
 
-#btc-footer {
-  font-weight: 600;
-}
+    #btc-footer {
+      font-weight: 600;
+    }
+
     @media (max-width: 480px) {
       body {
         padding: 1rem;
@@ -316,6 +318,18 @@ footer a:hover {
         padding: 0.4rem 0.8rem;
       }
     }
+
+    /* Move toggle to bottom for extreme small screens */
+    @media (max-width: 360px) {
+      #theme-toggle {
+        top: auto;
+        bottom: 1rem;
+        right: 50%;
+        transform: translateX(50%);
+        padding: 0.5rem 1rem;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -325,7 +339,9 @@ footer a:hover {
 <header>
   <h1>Portfolio</h1>
 </header>
+
 <main>
+  <!-- Projects... -->
   <a class="project-link" href="https://github.com/graph90/Quantum-computing" target="_blank">
     <article class="project-card">
       <h2 class="project-name">Quantum-computing</h2>
@@ -333,7 +349,6 @@ footer a:hover {
       <div class="project-lang">Jupyter Notebook</div>
     </article>
   </a>
-
   <a class="project-link" href="https://github.com/graph90/WanderingProgramV2" target="_blank">
     <article class="project-card">
       <h2 class="project-name">WanderingProgramV2</h2>
@@ -341,7 +356,6 @@ footer a:hover {
       <div class="project-lang">Python</div>
     </article>
   </a>
-
   <a class="project-link" href="https://github.com/graph90/fiatEliminator_BitBoyEdition" target="_blank">
     <article class="project-card">
       <h2 class="project-name">fiat Eliminator android</h2>
@@ -349,7 +363,6 @@ footer a:hover {
       <div class="project-lang">JavaScript</div>
     </article>
   </a>
-
   <a class="project-link" href="https://github.com/graph90/PolymorphicScripts" target="_blank">
     <article class="project-card">
       <h2 class="project-name">PolymorphicScripts</h2>
@@ -357,7 +370,6 @@ footer a:hover {
       <div class="project-lang">Python</div>
     </article>
   </a>
-
   <a class="project-link" href="https://github.com/graph90/JumperEncryption" target="_blank">
     <article class="project-card">
       <h2 class="project-name">JumperEncryption</h2>
@@ -365,7 +377,6 @@ footer a:hover {
       <div class="project-lang">Python</div>
     </article>
   </a>
-
   <a class="project-link" href="https://github.com/graph90/BlackJackAi" target="_blank">
     <article class="project-card">
       <h2 class="project-name">BlackJackAi</h2>
@@ -373,7 +384,6 @@ footer a:hover {
       <div class="project-lang">Python</div>
     </article>
   </a>
-
   <a class="project-link" href="https://www.roblox.com/games/95249682605742/Parkour-vs-Zombies-Survival-Chaos" target="_blank">
     <article class="project-card">
       <h2 class="project-name">Parkour vs Zombies: Survival Chaos</h2>
@@ -382,6 +392,11 @@ footer a:hover {
     </article>
   </a>
 </main>
+
+<section id="game" style="margin:3rem 0; text-align:center;">
+  <h2>Play Snake!</h2>
+  <canvas id="snakeCanvas" width="400" height="400" style="background:#1e1e1e; border:2px solid #61dafb; border-radius:12px;"></canvas>
+</section>
 
 <section class="blog">
   <h2>Latest Blog Posts</h2>
@@ -412,7 +427,6 @@ footer a:hover {
   <span id="btc-footer">BTC Price: Loading...</span>
 </footer>
 
-
 <script>
   const toggleBtn = document.getElementById('theme-toggle');
   toggleBtn.addEventListener('click', () => {
@@ -438,35 +452,78 @@ footer a:hover {
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
 
-  document.body.addEventListener('mousemove', (e) => {
-    const particle = document.createElement('div');
-    particle.style.position = 'absolute';
-    particle.style.left = e.clientX + 'px';
-    particle.style.top = e.clientY + 'px';
-    particle.style.width = particle.style.height = '6px';
-    particle.style.borderRadius = '50%';
-    particle.style.pointerEvents = 'none';
-    particle.style.zIndex = 9999;
-    particle.style.opacity = 1;
-    particle.style.transform = 'translate(-50%, -50%)';
-    
-    particle.style.backgroundColor = document.body.classList.contains('light-mode') ? '#000000' : '#ffffff';
-    
-    document.body.appendChild(particle);
+  const canvas = document.getElementById('snakeCanvas');
+  const ctx = canvas.getContext('2d');
+  const box = 20;
+  const canvasSize = 400;
+  let snake = [{x: 9*box, y: 9*box}];
+  let food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
+  let dir = '';
+  let score = 0;
+  let gameInterval;
 
-    let lifetime = 0;
-    const fade = setInterval(() => {
-      lifetime += 0.02;
-      particle.style.opacity -= 0.02;
-      particle.style.transform = `translate(-50%, -50%) translateY(-${lifetime*20}px)`;
-      if (particle.style.opacity <= 0) {
-        clearInterval(fade);
-        particle.remove();
-      }
-    }, 16);
+  function resetGame() {
+    snake = [{x: 9*box, y: 9*box}];
+    dir = '';
+    score = 0;
+    food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
+  }
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'w' && dir !== 'DOWN') dir='UP';
+    if(e.key === 's' && dir !== 'UP') dir='DOWN';
+    if(e.key === 'a' && dir !== 'RIGHT') dir='LEFT';
+    if(e.key === 'd' && dir !== 'LEFT') dir='RIGHT';
   });
+
+  function drawSnake() {
+    ctx.fillStyle = document.body.classList.contains('light-mode') ? '#f5f5f5' : '#1e1e1e';
+    ctx.fillRect(0,0,canvasSize,canvasSize);
+
+    for(let i=0;i<snake.length;i++){
+      ctx.fillStyle = (i===0)?'#61dafb':'#03dac6';
+      ctx.fillRect(snake[i].x, snake[i].y, box, box);
+      ctx.strokeStyle = '#000';
+      ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+    }
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect(food.x, food.y, box, box);
+
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    if(dir==='UP') snakeY -= box;
+    if(dir==='DOWN') snakeY += box;
+    if(dir==='LEFT') snakeX -= box;
+    if(dir==='RIGHT') snakeX += box;
+
+    if(snakeX === food.x && snakeY === food.y){
+      score++;
+      food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
+    } else {
+      snake.pop();
+    }
+
+    const newHead = {x: snakeX, y: snakeY};
+
+    if(snakeX < 0 || snakeX >= canvasSize || snakeY < 0 || snakeY >= canvasSize || snake.some(s => s.x===newHead.x && s.y===newHead.y)){
+      clearInterval(gameInterval);
+      const restart = confirm(`Game Over! Score: ${score}\nDo you want to restart?`);
+      if(restart){
+        resetGame();
+        gameInterval = setInterval(drawSnake, 100);
+      }
+      return;
+    }
+
+    snake.unshift(newHead);
+  }
+
+  gameInterval = setInterval(drawSnake, 100);
 </script>
 
-
 </body>
+
+
 </html>
