@@ -12,9 +12,15 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #000000, #ffffff);
+      background: linear-gradient(-45deg, #000000, #061f3f, #000000, #061f3f);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
       color: #eee;
       min-height: 100vh;
       display: flex;
@@ -22,6 +28,12 @@
       align-items: center;
       padding: 2rem 1rem;
       transition: background 0.5s ease;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
 
     header {
@@ -43,7 +55,6 @@
                    0 0 20px rgba(255, 0, 0, 0.6);
     }
 
-    /* Shimmer sweep with back-and-forth motion */
     header h1::before {
       content: '';
       position: absolute;
@@ -93,17 +104,23 @@
       background: #1e1e1e;
       border-radius: 12px;
       padding: 1.5rem;
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.7);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       height: 100%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
     }
 
     .project-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 8px 24px rgb(97 218 251 / 0.7);
+      box-shadow: 0 8px 24px rgba(97,218,251,0.7), 0 0 20px rgba(97,218,251,0.4);
     }
 
     .project-name {
@@ -119,6 +136,11 @@
       flex-grow: 1;
       margin-bottom: 1rem;
       line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+
+    .project-card:hover .project-desc {
+      color: #e0e0e0;
     }
 
     .project-lang {
@@ -130,6 +152,17 @@
       border: 1.5px solid #03dac6;
       border-radius: 8px;
       user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .project-lang i {
+      transition: transform 0.3s ease;
+    }
+
+    .project-lang i:hover {
+      transform: rotate(15deg) scale(1.2);
     }
 
     /* Blog Section */
@@ -141,9 +174,15 @@
 
     .blog h2 {
       font-size: 2rem;
-      color: #61dafb;
       margin-bottom: 1.5rem;
       text-align: center;
+      animation: fadeColor 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeColor {
+      0% { color: #000000; }
+      50% { color: #ffffff; }
+      100% { color: #61dafb; }
     }
 
     .blog-grid {
@@ -156,15 +195,15 @@
       background: #1e1e1e;
       border-radius: 12px;
       padding: 1.5rem;
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.7);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .blog-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 8px 24px rgb(97 218 251 / 0.7);
+      box-shadow: 0 8px 24px rgba(97,218,251,0.7), 0 0 20px rgba(97,218,251,0.4);
     }
 
     .blog-title {
@@ -172,6 +211,13 @@
       font-weight: 700;
       color: #61dafb;
       margin-bottom: 0.5rem;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .blog-title:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px #61dafb;
+      cursor: pointer;
     }
 
     .blog-date {
@@ -186,6 +232,11 @@
       flex-grow: 1;
       margin-bottom: 1rem;
       line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+
+    .blog-card:hover .blog-excerpt {
+      color: #e0e0e0;
     }
 
     .read-more {
@@ -196,26 +247,30 @@
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.2s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
 
     .read-more:hover {
       background: #03a9f4;
+      transform: scale(1.05);
     }
 
     footer {
       margin-top: 3rem;
       font-size: 0.9rem;
       color: #555;
+      text-align: center;
     }
 
     footer a {
       color: #61dafb;
       text-decoration: none;
+      transition: text-shadow 0.3s ease;
     }
 
     footer a:hover {
-      text-decoration: underline;
+      text-shadow: 0 0 5px #61dafb;
+      text-decoration: none;
     }
 
     @media (max-width: 480px) {
@@ -223,22 +278,12 @@
         padding: 1rem;
       }
     }
-    .blog h2 {
-  animation: fadeColor 3s ease-in-out infinite alternate;
-}
-
-@keyframes fadeColor {
-  0% { color: #000000; }
-  50% { color: #fb0000; }
-  100% { color: #61dafb; }
-}
   </style>
-  
 </head>
 <body>
 
 <header>
-  <h1> Portfolio</h1>
+  <h1>Portfolio</h1>
 </header>
 
 <!-- Portfolio Section -->
@@ -254,7 +299,7 @@
   <a class="project-link" href="https://github.com/graph90/WanderingProgramV2" target="_blank">
     <article class="project-card">
       <h2 class="project-name">WanderingProgramV2</h2>
-      <p class="project-desc">WanderingProgramV2 is an experimental Python script for self replication and self mutation...</p>
+      <p class="project-desc">Experimental Python script for self replication and mutation...</p>
       <div class="project-lang">Python</div>
     </article>
   </a>
@@ -307,16 +352,19 @@
     <article class="blog-card">
       <h3 class="blog-title">Uncensored Gemma 3</h3>
       <p class="blog-excerpt">A good uncensored version of gemma3-4b-it-abliterated-GGUF</p>
-      <a class="project-link" href="https://huggingface.co/mradermacher/gemma3-4b-it-abliterated-GGUF">huggingface</a>
-    </article>
-    <article class="blog-card">
-      <h3 class="blog-title">Good Langs</h3>
-      <p class="blog-excerpt">Python, C++, Java, C, Bash, DuckyScript, JavaScript</p>
+      <a class="read-more" href="https://huggingface.co/mradermacher/gemma3-4b-it-abliterated-GGUF" target="_blank">Read More</a>
     </article>
 
     <article class="blog-card">
-      <h3 class="blog-title"></h3>
-      <p class="blog-excerpt">graph90 💻 Python | C++ | Java | C | Bash | Lua 🐧 Linux, FreeBSD & MINIX Enthusiast 🎮 Roblox Game Developer</p>
+      <h3 class="blog-title">Good Langs</h3>
+      <p class="blog-excerpt">Python, C++, Java, C, Bash, DuckyScript, JavaScript</p>
+      <a class="read-more" href="#">Read More</a>
+    </article>
+
+    <article class="blog-card">
+      <h3 class="blog-title">Graph90 Profile</h3>
+      <p class="blog-excerpt">Python | C++ | Java | C | Bash | Lua. Linux, FreeBSD & MINIX Enthusiast. Roblox Game Developer.</p>
+      <a class="read-more" href="https://github.com/graph90" target="_blank">Read More</a>
     </article>
   </div>
 </section>
@@ -324,7 +372,7 @@
 <footer>
   &copy; 2025 Nathaniel Armogan &nbsp;|&nbsp;
   <a href="https://www.linkedin.com/in/nathaniel-armogan-983556171" target="_blank">
-    <b>LinkedIn</b>
+    LinkedIn
   </a>
 </footer>
 
