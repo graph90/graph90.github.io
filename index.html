@@ -59,7 +59,7 @@
     }
 
     header {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       text-align: center;
       position: relative;
     }
@@ -122,6 +122,14 @@
     }
     #theme-toggle:hover {
       background: #03a9f4;
+    }
+
+    /* BTC price container */
+    #btc-price {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
     }
 
     main {
@@ -278,24 +286,32 @@
       transform: scale(1.05);
     }
 
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #555;
-      text-align: center;
-    }
+   footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+}
 
-    footer a {
-      color: #61dafb;
-      text-decoration: none;
-      transition: text-shadow 0.3s ease;
-    }
+footer a {
+  color: #61dafb;
+  text-decoration: none;
+  transition: text-shadow 0.3s ease;
+}
 
-    footer a:hover {
-      text-shadow: 0 0 5px #61dafb;
-      text-decoration: none;
-    }
+footer a:hover {
+  text-shadow: 0 0 5px #61dafb;
+  text-decoration: none;
+}
 
+#btc-footer {
+  font-weight: 600;
+}
     @media (max-width: 480px) {
       body {
         padding: 1rem;
@@ -315,6 +331,7 @@
 <header>
   <h1>Portfolio</h1>
 </header>
+
 
 <!-- Portfolio Section -->
 <main>
@@ -400,15 +417,38 @@
 </section>
 
 <footer>
-  &copy; 2025 Nathaniel Armogan &nbsp;|&nbsp;
-  <a href="https://www.linkedin.com/in/nathaniel-armogan-983556171" target="_blank">LinkedIn</a>
+  &copy; 2025 Nathaniel Armogan&nbsp;|&nbsp;
+  <a href="https://www.linkedin.com/in/nathaniel-armogan-983556171" target="_blank">LinkedIn</a>&nbsp;|&nbsp;
+  <span id="btc-footer">BTC Price: Loading...</span>
 </footer>
 
+
 <script>
+  // Theme Toggle
   const toggleBtn = document.getElementById('theme-toggle');
   toggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
   });
+
+  // BTC Price + 24h Change Fetch
+  async function fetchBTCPrice() {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false');
+      if (!response.ok) throw new Error('Network response not ok');
+      const data = await response.json();
+      const price = data.market_data.current_price.usd;
+      const change = data.market_data.price_change_percentage_24h;
+      const arrow = change >= 0 ? '▲' : '▼';
+      const color = change >= 0 ? 'green' : 'red';
+      document.getElementById('btc-footer').innerHTML = `BTC: $${price.toLocaleString()} <span style="color:${color}">${arrow} ${change.toFixed(2)}%</span>`;
+    } catch (err) {
+      console.error(err);
+      document.getElementById('btc-footer').textContent = 'BTC Price: Error';
+    }
+  }
+
+  fetchBTCPrice();
+  setInterval(fetchBTCPrice, 60000); // refresh every 60s
 </script>
 
 </body>
