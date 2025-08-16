@@ -425,10 +425,10 @@ footer a:hover {
       if (!response.ok) throw new Error('Network response not ok');
       const data = await response.json();
       const price = data.market_data.current_price.usd;
-const change = data.market_data.price_change_percentage_24h;
-const arrow = change >= 0 ? '▲' : '▼';
-const color = change >= 0 ? 'green' : 'red';
-document.getElementById('btc-footer').innerHTML = `<span style="color:orange">BTC:</span> $${price.toLocaleString()} <span style="color:${color}">${arrow} ${change.toFixed(2)}%</span>`;
+      const change = data.market_data.price_change_percentage_24h;
+      const arrow = change >= 0 ? '▲' : '▼';
+      const color = change >= 0 ? 'green' : 'red';
+      document.getElementById('btc-footer').innerHTML = `<span style="color:orange">BTC:</span> $${price.toLocaleString()} <span style="color:${color}">${arrow} ${change.toFixed(2)}%</span>`;
     } catch (err) {
       console.error(err);
       document.getElementById('btc-footer').textContent = 'BTC Price: Error';
@@ -437,7 +437,36 @@ document.getElementById('btc-footer').innerHTML = `<span style="color:orange">BT
 
   fetchBTCPrice();
   setInterval(fetchBTCPrice, 60000);
+
+  document.body.addEventListener('mousemove', (e) => {
+    const particle = document.createElement('div');
+    particle.style.position = 'absolute';
+    particle.style.left = e.clientX + 'px';
+    particle.style.top = e.clientY + 'px';
+    particle.style.width = particle.style.height = '6px';
+    particle.style.borderRadius = '50%';
+    particle.style.pointerEvents = 'none';
+    particle.style.zIndex = 9999;
+    particle.style.opacity = 1;
+    particle.style.transform = 'translate(-50%, -50%)';
+    
+    particle.style.backgroundColor = document.body.classList.contains('light-mode') ? '#000000' : '#ffffff';
+    
+    document.body.appendChild(particle);
+
+    let lifetime = 0;
+    const fade = setInterval(() => {
+      lifetime += 0.02;
+      particle.style.opacity -= 0.02;
+      particle.style.transform = `translate(-50%, -50%) translateY(-${lifetime*20}px)`;
+      if (particle.style.opacity <= 0) {
+        clearInterval(fade);
+        particle.remove();
+      }
+    }, 16);
+  });
 </script>
+
 
 </body>
 </html>
