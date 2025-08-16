@@ -27,7 +27,7 @@
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
-      transition: background 0.5s ease;
+      transition: background 0.5s ease, color 0.5s ease;
     }
 
     @keyframes gradientBG {
@@ -36,9 +36,32 @@
       100% {background-position: 0% 50%;}
     }
 
+    /* Dark/Light mode styles */
+    body.light-mode {
+      background: linear-gradient(-45deg, #ffffff, #a0c4ff, #ffffff, #a0c4ff);
+      color: #111;
+    }
+    body.light-mode .project-card, body.light-mode .blog-card {
+      background: #f5f5f5;
+      color: #111;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    body.light-mode .project-lang {
+      border-color: #00796b;
+      color: #00796b;
+    }
+    body.light-mode .read-more {
+      background: #00796b;
+      color: #fff;
+    }
+    body.light-mode footer a {
+      color: #00796b;
+    }
+
     header {
       margin-bottom: 2rem;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
@@ -82,9 +105,23 @@
       100% { left: -100%; }
     }
 
-    header p {
-      font-size: 1.1rem;
-      color: #ccc;
+    /* Dark/Light toggle button */
+    #theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: #61dafb;
+      color: #121212;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      z-index: 999;
+    }
+    #theme-toggle:hover {
+      background: #03a9f4;
     }
 
     main {
@@ -157,14 +194,6 @@
       gap: 0.3rem;
     }
 
-    .project-lang i {
-      transition: transform 0.3s ease;
-    }
-
-    .project-lang i:hover {
-      transform: rotate(15deg) scale(1.2);
-    }
-
     /* Blog Section */
     section.blog {
       max-width: 900px;
@@ -220,12 +249,6 @@
       cursor: pointer;
     }
 
-    .blog-date {
-      font-size: 0.9rem;
-      color: #888;
-      margin-bottom: 0.75rem;
-    }
-
     .blog-excerpt {
       font-size: 1rem;
       color: #bbb;
@@ -277,10 +300,17 @@
       body {
         padding: 1rem;
       }
+      #theme-toggle {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.4rem 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
+
+<button id="theme-toggle">Toggle Dark/Light</button>
 
 <header>
   <h1>Portfolio</h1>
@@ -371,10 +401,15 @@
 
 <footer>
   &copy; 2025 Nathaniel Armogan &nbsp;|&nbsp;
-  <a href="https://www.linkedin.com/in/nathaniel-armogan-983556171" target="_blank">
-    LinkedIn
-  </a>
+  <a href="https://www.linkedin.com/in/nathaniel-armogan-983556171" target="_blank">LinkedIn</a>
 </footer>
+
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+  });
+</script>
 
 </body>
 </html>
